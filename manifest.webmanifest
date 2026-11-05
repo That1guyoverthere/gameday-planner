@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "GameDay Planner",
+  "short_name": "GameDay",
+  "description": "Your personal game backlog, play schedule, and gaming history.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d1018",
+  "theme_color": "#10131d",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
