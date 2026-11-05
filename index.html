@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10131d">
+<meta name="description" content="Your personal game backlog, play schedule, and gaming history.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>GameDay — Gaming Planner</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1018;--panel:#171c28;--panel2:#202738;--line:#2c3548;--text:#f4f6fb;--muted:#9ba7bb;--accent:#9b8cff;--green:#70d6a4;--yellow:#f5c76b;--red:#ff8585}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 90% -10%,#29204b 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{width:min(920px,100%);margin:auto;padding:22px 16px 54px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(140deg,#9b8cff,#5a4cc7);display:grid;place-items:center;font-size:24px;box-shadow:0 8px 25px #6859d544}.eyebrow{color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:750}.brand h1{font-size:22px;margin:0;letter-spacing:-.04em}.top-actions{display:flex;gap:8px}.btn,.iconbtn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);padding:10px 13px;font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:#11101b}.btn.small{padding:7px 10px;font-size:13px}.iconbtn{width:40px;height:40px;padding:0;font-size:17px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.stat{background:#171c28d9;border:1px solid var(--line);border-radius:16px;padding:14px}.stat strong{font-size:25px;display:block;letter-spacing:-.04em}.stat span{font-size:12px;color:var(--muted)}.progress{height:5px;background:#30384a;border-radius:9px;margin-top:9px;overflow:hidden}.progress i{display:block;height:100%;background:var(--green);width:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:16px}.panel h2{font-size:16px;margin:0 0 14px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;color:var(--muted);font-weight:650}input,select,textarea{width:100%;background:#0f1420;border:1px solid var(--line);border-radius:11px;color:var(--text);padding:11px 12px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--accent)}textarea{resize:vertical;min-height:70px}.formfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:13px}.toolbar{display:flex;gap:9px;align-items:center;margin:15px 0 12px;flex-wrap:wrap}.tabs{display:flex;gap:5px;padding:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px}.tab{border:0;background:transparent;color:var(--muted);padding:7px 11px;border-radius:9px;font-size:13px;font-weight:700}.tab.active{background:var(--panel2);color:var(--text)}.search{flex:1;min-width:140px}.list{display:grid;gap:10px}.game{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;grid-template-columns:1fr auto;gap:10px}.game h3{font-size:16px;margin:0 0 4px}.meta{color:var(--muted);font-size:12px;display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;border-radius:99px;padding:4px 9px;font-size:11px;font-weight:750;background:#292f40;color:#c8d0e0;white-space:nowrap}.pill.planned{background:#3a315a;color:#c8bbff}.pill.played{background:#183d34;color:#8ce5bd}.pill.backlog{background:#3d3522;color:#f4d28b}.game-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.notes{font-size:12px;color:var(--muted);margin-top:8px;white-space:pre-wrap}.empty{text-align:center;padding:35px 15px;color:var(--muted)}.empty b{display:block;color:var(--text);margin:8px}.hidden{display:none!important}.footer{text-align:center;color:var(--muted);font-size:11px;margin-top:22px}.installhint{font-size:12px;color:var(--muted);margin:8px 2px 0}
+@media(max-width:560px){.shell{padding:17px 13px 40px}.top{align-items:flex-start}.brand h1{font-size:19px}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:22px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.game{grid-template-columns:1fr}.game-actions{justify-content:flex-start}.top-actions .btn{padding:9px 10px;font-size:12px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="top">
+ <div class="brand"><div class="logo">🎮</div><div><div class="eyebrow">Your personal backlog</div><h1>GameDay Planner</h1></div></div>
+ <div class="top-actions"><button class="btn" id="installBtn" hidden>＋ Install</button><button class="iconbtn" id="exportBtn" title="Export your list">⇩</button></div>
+</header>
+<section class="stats" aria-label="Gaming statistics">
+ <div class="stat"><strong id="totalCount">0</strong><span>Games in list</span></div>
+ <div class="stat"><strong id="plannedCount">0</strong><span>Planned / backlog</span></div>
+ <div class="stat"><strong id="playedCount">0</strong><span>Played</span><div class="progress"><i id="progressBar"></i></div></div>
+</section>
+<section class="panel" id="editor">
+ <h2 id="formTitle">＋ Add a game</h2>
+ <form id="gameForm">
+  <div class="formgrid">
+   <div class="field full"><label for="gameName">GAME TITLE</label><input id="gameName" maxlength="90" placeholder="e.g. Ghost of Tsushima" required></div>
+   <div class="field"><label for="platform">PLATFORM</label><select id="platform"><option>PlayStation 5</option><option>PlayStation 4</option><option>Xbox Series X|S</option><option>Xbox One</option><option>PC</option><option>Nintendo Switch</option><option>Other</option></select></div>
+   <div class="field"><label for="status">STATUS</label><select id="status"><option value="backlog">Backlog</option><option value="planned">Scheduled</option><option value="played">Played</option></select></div>
+   <div class="field"><label for="scheduleType">SCHEDULE TYPE</label><select id="scheduleType"><option value="one-day">One day</option><option value="until-completion">Until completion</option></select></div>
+   <div class="field"><label for="playDate" id="dateLabel">WHEN WILL YOU PLAY?</label><input id="playDate" type="date"></div>
+   <div class="field"><label for="timeMode">TIME PLAN (OPTIONAL)</label><select id="timeMode"><option value="specific">Specific time</option><option value="duration">Amount of time</option></select></div>
+   <div class="field" id="specificTimeField"><label for="playTime">START TIME</label><input id="playTime" type="time"></div>
+   <div class="field hidden" id="durationField"><label for="durationValue">HOW LONG WILL YOU PLAY?</label><div style="display:grid;grid-template-columns:1fr 120px;gap:8px"><input id="durationValue" type="number" min="1" max="1440" step="1" inputmode="numeric" placeholder="e.g. 2"><select id="durationUnit"><option value="hours">Hours</option><option value="minutes">Minutes</option></select></div></div>
+   <div class="field full"><label for="notes">NOTES (OPTIONAL)</label><textarea id="notes" maxlength="500" placeholder="Campaign, co-op plans, DLC, where you left off…"></textarea></div>
+  </div>
+  <div class="formfoot"><button type="button" class="btn" id="cancelEdit" hidden>Cancel</button><button class="btn primary" id="saveBtn" type="submit">Add to my list</button></div>
+ </form>
+ <p class="installhint">Your list is saved on this device. Use Export to keep a backup or move it to another device.</p>
+</section>
+<div class="toolbar">
+ <div class="tabs" role="group" aria-label="Filter games">
+  <button class="tab active" data-filter="all">All</button><button class="tab" data-filter="upcoming">To play</button><button class="tab" data-filter="played">Played</button>
+ </div>
+ <input class="search" id="search" placeholder="Search your games…" aria-label="Search games">
+ <select id="sort" aria-label="Sort games" style="width:auto"><option value="date">Play date</option><option value="name">Name</option><option value="added">Recently added</option></select>
+</div>
+<section class="list" id="gameList" aria-live="polite"></section>
+<div class="footer">GAMEDAY PLANNER · YOUR GAMES, YOUR SCHEDULE</div>
+</main>
+<script>
+(()=> {
+ const KEY='gameday-planner-v1';
+ let games=load(),filter='all',editing=null,deferredPrompt=null;
+ const $=id=>document.getElementById(id);
+ function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}}
+ function save(){localStorage.setItem(KEY,JSON.stringify(games));render()}
+ function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function fmtDate(d,t,type='one-day'){if(!d)return 'No date set';const x=new Date(d+'T12:00:00');return x.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})+(t?' · '+t:'')+(type==='until-completion'?' · Until completion':'')}
+ function formatTimePlan(g){if(g.timeMode==='duration'&&g.durationValue)return g.durationValue+' '+(Number(g.durationValue)===1&&g.durationUnit==='hours'?'hour':Number(g.durationValue)===1&&g.durationUnit==='minutes'?'minute':g.durationUnit);return g.time||''}
+ function render(){
+  const played=games.filter(g=>g.status==='played').length;
+  $('totalCount').textContent=games.length;$('plannedCount').textContent=games.length-played;$('playedCount').textContent=played;
+  $('progressBar').style.width=(games.length?played/games.length*100:0)+'%';
+  const q=$('search').value.trim().toLowerCase(),sort=$('sort').value;
+  let rows=games.filter(g=>(filter==='all'||(filter==='played'?g.status==='played':g.status!=='played'))&&(!q||(g.name+' '+g.platform+' '+(g.notes||'')).toLowerCase().includes(q)));
+  rows.sort((a,b)=>sort==='name'?a.name.localeCompare(b.name):sort==='added'?b.created-a.created:((a.date||'9999')+(a.time||'')).localeCompare((b.date||'9999')+(b.time||'')));
+  $('gameList').innerHTML=rows.length?rows.map(g=>`<article class="game">
+   <div><h3>${esc(g.name)}</h3><div class="meta"><span>${esc(g.platform)}</span><span>•</span><span>${esc(fmtDate(g.date,formatTimePlan(g),g.scheduleType||'one-day'))}</span></div>${g.notes?'<div class="notes">'+esc(g.notes)+'</div>':''}</div>
+   <div class="game-actions"><span class="pill ${g.status}">${g.status==='played'?'Played':g.status==='planned'?'Scheduled':'Backlog'}</span><button class="btn small" data-action="toggle" data-id="${g.id}">${g.status==='played'?'Undo':'Mark played'}</button><button class="btn small" data-action="edit" data-id="${g.id}">Edit</button><button class="iconbtn" data-action="delete" data-id="${g.id}" aria-label="Delete ${esc(g.name)}">×</button></div>
+  </article>`).join(''):'<div class="panel empty"><div style="font-size:30px">🕹️</div><b>No games found</b><span>Add a game above or change your search/filter.</span></div>';
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+ }
+ function syncScheduleLabel(){$('dateLabel').textContent=$('scheduleType').value==='until-completion'?'START DATE':'PLAY DATE'}
+ function syncTimeFields(){const duration=$('timeMode').value==='duration';$('specificTimeField').classList.toggle('hidden',duration);$('durationField').classList.toggle('hidden',!duration)}
+ $('scheduleType').addEventListener('change',syncScheduleLabel);$('timeMode').addEventListener('change',syncTimeFields);
+ function resetForm(){editing=null;$('gameForm').reset();syncScheduleLabel();syncTimeFields();$('formTitle').textContent='＋ Add a game';$('saveBtn').textContent='Add to my list';$('cancelEdit').hidden=true}
+ $('gameForm').addEventListener('submit',e=>{e.preventDefault();const name=$('gameName').value.trim();if(!name)return;const data={name,platform:$('platform').value,status:$('status').value,scheduleType:$('scheduleType').value,date:$('playDate').value,timeMode:$('timeMode').value,time:$('timeMode').value==='specific'?$('playTime').value:'',durationValue:$('timeMode').value==='duration'?$('durationValue').value:'',durationUnit:$('durationUnit').value,notes:$('notes').value.trim()};if(editing){games=games.map(g=>g.id===editing?{...g,...data}:g)}else{games.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),created:Date.now(),...data})}resetForm();save()});
+ $('cancelEdit').onclick=resetForm;
+ $('gameList').addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const g=games.find(x=>x.id===b.dataset.id);if(!g)return;if(b.dataset.action==='toggle'){g.status=g.status==='played'?'planned':'played';save()}if(b.dataset.action==='delete'){if(confirm('Delete '+g.name+' from your list?')){games=games.filter(x=>x.id!==g.id);save()}}if(b.dataset.action==='edit'){$('gameName').value=g.name;$('platform').value=g.platform;$('status').value=g.status;$('scheduleType').value=g.scheduleType||'one-day';syncScheduleLabel();$('playDate').value=g.date||'';$('timeMode').value=g.timeMode||(g.durationValue?'duration':'specific');$('playTime').value=g.time||'';$('durationValue').value=g.durationValue||'';$('durationUnit').value=g.durationUnit||'hours';syncTimeFields();$('notes').value=g.notes||'';editing=g.id;$('formTitle').textContent='✎ Edit game';$('saveBtn').textContent='Save changes';$('cancelEdit').hidden=false;$('editor').scrollIntoView({behavior:'smooth',block:'start'})}});
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render()});$('search').oninput=render;$('sort').onchange=render;
+ $('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify({app:'GameDay Planner',version:1,games},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='gameday-planner-backup.json';a.click();URL.revokeObjectURL(url)};
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('installBtn').hidden=false});
+ $('installBtn').onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installBtn').hidden=true};
+ if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+ render();
+})();
+</script>
+</body></html>
