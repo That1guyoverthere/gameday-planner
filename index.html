@@ -119,7 +119,7 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 <main class="shell">
 <header class="top">
  <div class="brand"><div class="logo">🎮</div><div><div class="eyebrow">Your personal backlog</div><h1>GameDay Planner</h1></div></div>
- <div class="top-actions"><button class="btn" id="installBtn" hidden>＋ Install</button><button class="iconbtn" id="exportBtn" title="Export your list">⇩</button></div>
+ <div class="top-actions"><button class="iconbtn" id="exportBtn" title="Export your list">⇩</button></div>
 </header>
 <section class="stats" aria-label="Gaming statistics">
  <div class="stat"><strong id="totalCount">0</strong><span>Games in list</span></div>
@@ -174,7 +174,7 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 <script>
 (()=> {
  const KEY='gameday-planner-v1';
- let games=load(),filter='all',editing=null,deferredPrompt=null;
+ let games=load(),filter='all',editing=null;
  const $=id=>document.getElementById(id);
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}}
  function save(){localStorage.setItem(KEY,JSON.stringify(games));render();document.dispatchEvent(new Event('gameday:changed'))}
