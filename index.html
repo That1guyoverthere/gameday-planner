@@ -67,6 +67,21 @@ body:not(.auth-ready) .shell>.top,body:not(.auth-ready) .shell>.stats,body:not(.
  #homePage .game{grid-template-columns:1fr;gap:8px}
  #homePage .game-actions{justify-content:flex-start}
 }
+
+/* Strict page isolation: hidden sections must never leak through layout rules */
+#dashboardContent .stats[hidden],#dashboardContent .toolbar[hidden],#dashboardContent #editor[hidden],#dashboardContent #gameList[hidden],#dashboardContent .footer[hidden],#dashboardContent #homePage[hidden],#dashboardContent #profilePage[hidden],#dashboardContent #calendarPage[hidden],#dashboardContent #achievementsPage[hidden]{display:none!important}
+#dashboardContent>.top .top-actions{display:flex!important;align-items:center;justify-content:flex-end;gap:8px;margin-left:auto}
+#dashboardContent>.top{display:flex!important;align-items:center;justify-content:flex-end;min-height:48px;padding:0 0 10px;margin:0 0 10px}
+#dashboardContent>.top #addGameBtn{margin-right:auto!important}
+#desktopSidebar .sideUser{display:none!important}
+#headerProfile{border-color:var(--line);background:var(--panel2);color:var(--text);padding:5px 10px 5px 6px}
+#headerSignOut{padding:8px 12px}
+@media(max-width:700px){
+ #dashboardContent>.top{height:auto;min-height:44px}
+ #dashboardContent>.top .top-actions{gap:6px}
+ #headerProfile{font-size:12px}
+ #headerSignOut{font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -147,5 +162,5 @@ body:not(.auth-ready) .shell>.top,body:not(.auth-ready) .shell>.stats,body:not(.
  document.addEventListener('gameday:cloud-loaded',()=>{games=load();render()});
 })();
 </script>
-<script type="module" src="./auth.js?v=12"></script>
+<script type="module" src="./auth.js?v=13"></script>
 </body></html>
