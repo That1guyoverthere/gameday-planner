@@ -94,11 +94,25 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .timer-overlay.open{display:flex}
 .timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:1;filter:saturate(1.12)}
 .timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b1470,#080b142e 50%,#080b1470),linear-gradient(0deg,#080b1488,transparent 58%);pointer-events:none}
-.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff66;border-radius:26px;background:rgba(10,15,25,.64);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #0008,inset 0 0 36px var(--timer-accent-soft)}
+.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff70;border-radius:26px;background:rgba(10,15,25,.46);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #0007,inset 0 0 36px var(--timer-accent-soft)}
 .timer-kicker{color:#f0f2fa;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
 .timer-panel h2{font-size:clamp(25px,4vw,38px);margin:12px 0 5px;overflow-wrap:anywhere;text-shadow:0 3px 22px #000}
 .timer-purpose{color:#e0e5ef;font-size:14px;margin:0 0 24px}
 .timer-display{font-size:clamp(54px,13vw,94px);font-weight:950;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.12;margin:22px 0 26px;text-shadow:0 5px 32px #000,0 0 28px var(--timer-accent-soft)}
+/* Each game gets a typography treatment inspired by its visual identity. */
+#timerOverlay[data-theme="ghost"] .timer-panel,#timerOverlay[data-theme="assassins-creed"] .timer-panel{border-radius:4px 24px 4px 24px;background:rgba(13,13,17,.43)}
+#timerOverlay[data-theme="ghost"] .timer-panel h2,#timerOverlay[data-theme="assassins-creed"] .timer-panel h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.045em}
+#timerOverlay[data-theme="ghost"] .timer-kicker,#timerOverlay[data-theme="assassins-creed"] .timer-kicker{font-family:Georgia,serif;letter-spacing:.24em}
+#timerOverlay[data-theme="khazan"] .timer-panel h2{font-family:"Arial Black",Impact,sans-serif;font-weight:900;letter-spacing:.025em;text-transform:uppercase}
+#timerOverlay[data-theme="khazan"] .timer-display{font-family:Impact,"Arial Narrow",sans-serif;letter-spacing:.07em}
+#timerOverlay[data-theme="stellar"] .timer-panel{border-radius:18px;background:rgba(5,17,27,.43);border-color:#8de5ff88}
+#timerOverlay[data-theme="stellar"] .timer-panel h2,#timerOverlay[data-theme="stellar"] .timer-display{font-family:"Trebuchet MS",Arial,sans-serif;letter-spacing:.07em}
+#timerOverlay[data-theme="death-stranding"] .timer-panel{border-radius:3px;background:rgba(12,19,24,.42);border-color:#d5a15b88}
+#timerOverlay[data-theme="death-stranding"] .timer-panel h2{font-family:"Arial",Helvetica,sans-serif;font-weight:300;letter-spacing:.16em;text-transform:uppercase}
+#timerOverlay[data-theme="death-stranding"] .timer-kicker{letter-spacing:.28em;font-weight:600}
+#timerOverlay[data-theme="battlefield"] .timer-panel{border-radius:3px;background:rgba(17,20,14,.43);border-color:#c4cc8b88}
+#timerOverlay[data-theme="battlefield"] .timer-panel h2{font-family:Impact,"Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.09em}
+#timerOverlay[data-theme="battlefield"] .timer-kicker{letter-spacing:.25em}
 .timer-state{min-height:20px;color:#f0f2f8;font-size:13px;margin-bottom:20px}
 .timer-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 .timer-controls button{min-width:116px;padding:12px 18px;border-radius:12px;border:1px solid #ffffff70;background:rgba(20,29,44,.78);color:white;font-weight:850;cursor:pointer;box-shadow:0 6px 18px #0005}
