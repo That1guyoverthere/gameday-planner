@@ -90,20 +90,26 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .game-actions{align-content:start}
 .start-game-btn{width:100%;min-height:34px;border:1px solid #3d8c69;border-radius:10px;background:linear-gradient(110deg,#1d6a49,#174d3a);color:#eafff3;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .start-game-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.timer-overlay{position:fixed;inset:0;z-index:1000;background:#070a12;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto}
+.timer-overlay{--timer-accent:#9b8cff;--timer-accent-soft:#9b8cff66;position:fixed;inset:0;z-index:1000;background:#070a12;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto}
 .timer-overlay.open{display:flex}
-.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.94;filter:saturate(1.1)}
- .timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b14df,#080b1488 50%,#080b14d9),linear-gradient(0deg,#080b14f2,transparent 55%);pointer-events:none}
-.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff55;border-radius:26px;background:#101827d9;backdrop-filter:blur(16px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #000a}
-.timer-kicker{color:#d5dced;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
+.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:1;filter:saturate(1.12)}
+.timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b1470,#080b142e 50%,#080b1470),linear-gradient(0deg,#080b1488,transparent 58%);pointer-events:none}
+.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff66;border-radius:26px;background:rgba(10,15,25,.64);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #0008,inset 0 0 36px var(--timer-accent-soft)}
+.timer-kicker{color:#f0f2fa;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
 .timer-panel h2{font-size:clamp(25px,4vw,38px);margin:12px 0 5px;overflow-wrap:anywhere;text-shadow:0 3px 22px #000}
-.timer-purpose{color:#d4dbea;font-size:14px;margin:0 0 24px}
-.timer-display{font-size:clamp(54px,13vw,94px);font-weight:950;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.12;margin:22px 0 26px;text-shadow:0 5px 32px #000,0 0 28px #9b8cff66}
-.timer-state{min-height:20px;color:#e0e6f3;font-size:13px;margin-bottom:20px}
+.timer-purpose{color:#e0e5ef;font-size:14px;margin:0 0 24px}
+.timer-display{font-size:clamp(54px,13vw,94px);font-weight:950;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.12;margin:22px 0 26px;text-shadow:0 5px 32px #000,0 0 28px var(--timer-accent-soft)}
+.timer-state{min-height:20px;color:#f0f2f8;font-size:13px;margin-bottom:20px}
 .timer-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.timer-controls button{min-width:116px;padding:12px 18px;border-radius:12px;border:1px solid #ffffff50;background:#1c2638ef;color:white;font-weight:850;cursor:pointer;box-shadow:0 6px 18px #0005}
-.timer-controls .timer-primary{background:#6852c9;border-color:#a394ff}
-.timer-controls .timer-stop{background:#742f42;border-color:#d26b83}
+.timer-controls button{min-width:116px;padding:12px 18px;border-radius:12px;border:1px solid #ffffff70;background:rgba(20,29,44,.78);color:white;font-weight:850;cursor:pointer;box-shadow:0 6px 18px #0005}
+.timer-controls .timer-primary{background:color-mix(in srgb,var(--timer-accent) 78%,#111827);border-color:var(--timer-accent)}
+.timer-controls .timer-stop{background:rgba(104,42,52,.82);border-color:#e18a94}
+#timerOverlay[data-theme="ghost"]{--timer-accent:#d6a75b;--timer-accent-soft:#d6a75b66}
+#timerOverlay[data-theme="khazan"]{--timer-accent:#ed6848;--timer-accent-soft:#ed684866}
+#timerOverlay[data-theme="stellar"]{--timer-accent:#55c8ef;--timer-accent-soft:#55c8ef66}
+#timerOverlay[data-theme="death-stranding"]{--timer-accent:#d5a15b;--timer-accent-soft:#d5a15b66}
+#timerOverlay[data-theme="battlefield"]{--timer-accent:#b7c078;--timer-accent-soft:#b7c07866}
+#timerOverlay[data-theme="assassins-creed"]{--timer-accent:#c65b50;--timer-accent-soft:#c65b5066}
 .timer-alert{display:none;margin:16px 0 0;padding:13px;border:1px solid #62d99a;border-radius:12px;background:#123d2def;color:#b6ffd5;font-weight:850}
 .timer-alert.show{display:block}
 @media(max-width:560px){.timer-overlay{padding:10px}.timer-panel{width:100%;padding:25px 16px;border-radius:20px}.timer-display{margin:20px 0}.timer-controls button{flex:1;min-width:100px}.game-actions{max-width:100%}}
@@ -199,7 +205,7 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
  function stopTimerAudio(){if(timerAudioSource){try{timerAudioSource.stop()}catch{};try{timerAudioSource.disconnect()}catch{};timerAudioSource=null;}}
  function timerPaint(){if(!activeTimer)return;const remaining=activeTimer.paused?activeTimer.remaining:Math.max(0,activeTimer.deadline-Date.now());$('timerDisplay').textContent=timerFormat(remaining);if(remaining<=0&&!activeTimer.finished){activeTimer.finished=true;clearInterval(timerInterval);timerInterval=null;$('timerState').textContent='Session complete';$('timerPause').hidden=true;$('timerStop').hidden=true;$('timerAlert').textContent=activeTimer.kind==='start'?"It's time to play! Your scheduled start time has arrived.":"Time's up! Your planned game session has ended.";$('timerAlert').classList.add('show');$('timerDoneControls').style.display='flex';playTimerAudio();document.title='Time is up · GameDay Planner';}else if(!activeTimer.finished){$('timerState').textContent=activeTimer.paused?'Paused':activeTimer.kind==='start'?'Waiting for scheduled start':'Timer running';}}
  function timerClose(){clearInterval(timerInterval);timerInterval=null;stopTimerAudio();activeTimer=null;timerOverlay.classList.remove('open');document.title='GameDay Planner';}
- function setTimerArtwork(g){const n=String(g.name||'').toLowerCase();const art=[[/ghost of tsushima/,2215430],[/first berserker|khazan/,2680010],[/stellar blade/,3489700],[/death stranding 2/,2456740],[/battlefield 6/,2807960],[/assassin.?s creed revelations/,201870]];const match=art.find(item=>item[0].test(n));const img=$('timerArtwork');if(match){img.hidden=false;img.src='https://cdn.akamai.steamstatic.com/steam/apps/'+match[1]+'/library_hero.jpg';img.onerror=()=>{img.hidden=true;};}else{img.removeAttribute('src');img.hidden=true;}}
+ function setTimerArtwork(g){const n=String(g.name||'').toLowerCase();const art=[[/ghost of tsushima/,2215430,'ghost'],[/first berserker|khazan/,2680010,'khazan'],[/stellar blade/,3489700,'stellar'],[/death stranding 2/,2456740,'death-stranding'],[/battlefield 6/,2807960,'battlefield'],[/assassin.?s creed revelations/,201870,'assassins-creed']];const match=art.find(item=>item[0].test(n));const img=$('timerArtwork');timerOverlay.dataset.theme=match?match[2]:'default';if(match){img.hidden=false;img.src='https://cdn.akamai.steamstatic.com/steam/apps/'+match[1]+'/library_hero.jpg';img.onerror=()=>{img.hidden=true;};}else{img.removeAttribute('src');img.hidden=true;}}
  function startGameTimer(g){setTimerArtwork(g);let ms=0,kind='duration',purpose='Time remaining';if(g.timeMode==='duration'||(!g.timeMode&&g.durationValue)){const amount=Number(g.durationValue),unit=g.durationUnit||'hours';if(!Number.isFinite(amount)||amount<=0){alert('Set a play duration for this game before starting its timer.');return;}ms=amount*(unit==='minutes'?60000:3600000);}else{if(!g.date||!g.time){alert('Set a play date and specific start time for this game before starting its timer.');return;}const target=new Date(g.date+'T'+g.time).getTime();ms=target-Date.now();if(!Number.isFinite(ms)||ms<=0){alert('This game\'s scheduled start time has already passed. Update its date or time before starting the countdown.');return;}kind='start';purpose='Time until scheduled start';}
  activeTimer={gameId:g.id,deadline:Date.now()+ms,remaining:ms,paused:false,finished:false,kind};$('timerTitle').textContent=g.name;$('timerPurpose').textContent=purpose;$('timerAlert').classList.remove('show');$('timerPause').hidden=false;$('timerStop').hidden=false;$('timerPause').textContent='Pause';$('timerDoneControls').style.display='none';timerOverlay.classList.add('open');prepareTimerAudio()?.catch(err=>console.error('Could not prepare timer audio:',err));timerPaint();timerInterval=setInterval(timerPaint,250);}
  $('timerPause').addEventListener('click',()=>{if(!activeTimer||activeTimer.finished)return;if(activeTimer.paused){activeTimer.deadline=Date.now()+activeTimer.remaining;activeTimer.paused=false;$('timerPause').textContent='Pause';}else{activeTimer.remaining=Math.max(0,activeTimer.deadline-Date.now());activeTimer.paused=true;$('timerPause').textContent='Resume';}timerPaint()});
