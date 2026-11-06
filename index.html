@@ -15,6 +15,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{width:min
 @media(max-width:560px){.shell{padding:17px 13px 40px}.top{align-items:flex-start}.brand h1{font-size:19px}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:22px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.game{grid-template-columns:1fr}.game-actions{justify-content:flex-start}.top-actions .btn{padding:9px 10px;font-size:12px}}
 
 /* Responsive GameDay redesign: desktop Gaming Dashboard, mobile Premium Hub */
+#dashboardView[hidden]{display:none!important}
 #dashboardView{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;align-items:start}
 #desktopSidebar{position:sticky;top:16px;min-height:calc(100vh - 32px);border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#171c2c,#101522);padding:18px 12px;display:flex;flex-direction:column;gap:24px}
 .sideBrand{display:flex;align-items:center;gap:10px;padding:8px 6px;font-size:17px;line-height:1.05}.sideBrand span{font-size:30px}.sideBrand strong{letter-spacing:-.03em}
