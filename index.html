@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#10131d">
 <meta name="description" content="Your personal game backlog, play schedule, and gaming history.">
-<link rel="manifest" href="./manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cinzel+Decorative:wght@400;700&family=Orbitron:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
 <title>GameDay — Gaming Planner</title>
 <style>
@@ -90,89 +90,66 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .game-actions{align-content:start}
 .start-game-btn{width:100%;min-height:34px;border:1px solid #3d8c69;border-radius:10px;background:linear-gradient(110deg,#1d6a49,#174d3a);color:#eafff3;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .start-game-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.timer-overlay{--timer-accent:#9b8cff;--timer-accent-soft:#9b8cff66;position:fixed;inset:0;z-index:1000;background:#070a12;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto}
+
+/* Full-screen cinematic game timer */
+.timer-overlay{--timer-accent:#b6a06b;--timer-accent-soft:#b6a06b66;position:fixed;inset:0;z-index:1000;background:#05070c;display:none;align-items:center;justify-content:center;padding:clamp(18px,4vw,64px);overflow:hidden}
 .timer-overlay.open{display:flex}
-.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:1;filter:saturate(1.12)}
-.timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b1470,#080b142e 50%,#080b1470),linear-gradient(0deg,#080b1488,transparent 58%);pointer-events:none}
-.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff70;border-radius:26px;background:rgba(10,15,25,.46);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #0007,inset 0 0 36px var(--timer-accent-soft)}
-.timer-kicker{color:#f0f2fa;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
-.timer-panel h2{font-size:clamp(25px,4vw,38px);margin:12px 0 5px;overflow-wrap:anywhere;text-shadow:0 3px 22px #000}
-.timer-purpose{color:#e0e5ef;font-size:14px;margin:0 0 24px}
-.timer-display{font-size:clamp(54px,13vw,94px);font-weight:950;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.12;margin:22px 0 26px;text-shadow:0 5px 32px #000,0 0 28px var(--timer-accent-soft)}
-/* Each game gets a typography treatment inspired by its visual identity. */
-#timerOverlay[data-theme="ghost"] .timer-panel,#timerOverlay[data-theme="assassins-creed"] .timer-panel{border-radius:4px 24px 4px 24px;background:rgba(13,13,17,.43)}
-#timerOverlay[data-theme="ghost"] .timer-panel h2,#timerOverlay[data-theme="assassins-creed"] .timer-panel h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.045em}
-#timerOverlay[data-theme="ghost"] .timer-kicker,#timerOverlay[data-theme="assassins-creed"] .timer-kicker{font-family:Georgia,serif;letter-spacing:.24em}
-#timerOverlay[data-theme="khazan"] .timer-panel h2{font-family:"Arial Black",Impact,sans-serif;font-weight:900;letter-spacing:.025em;text-transform:uppercase}
-#timerOverlay[data-theme="khazan"] .timer-display{font-family:Impact,"Arial Narrow",sans-serif;letter-spacing:.07em}
-#timerOverlay[data-theme="stellar"] .timer-panel{border-radius:18px;background:rgba(5,17,27,.43);border-color:#8de5ff88}
-#timerOverlay[data-theme="stellar"] .timer-panel h2,#timerOverlay[data-theme="stellar"] .timer-display{font-family:"Trebuchet MS",Arial,sans-serif;letter-spacing:.07em}
-#timerOverlay[data-theme="death-stranding"] .timer-panel{border-radius:3px;background:rgba(12,19,24,.42);border-color:#d5a15b88}
-#timerOverlay[data-theme="death-stranding"] .timer-panel h2{font-family:"Arial",Helvetica,sans-serif;font-weight:300;letter-spacing:.16em;text-transform:uppercase}
-#timerOverlay[data-theme="death-stranding"] .timer-kicker{letter-spacing:.28em;font-weight:600}
-#timerOverlay[data-theme="battlefield"] .timer-panel{border-radius:3px;background:rgba(17,20,14,.43);border-color:#c4cc8b88}
-#timerOverlay[data-theme="battlefield"] .timer-panel h2{font-family:Impact,"Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.09em}
-#timerOverlay[data-theme="battlefield"] .timer-kicker{letter-spacing:.25em}
-
-/* Full game-specific timer compositions layered over the real Steam game key art. */
-.timer-panel{overflow:hidden;isolation:isolate}
-.timer-panel:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.9}
+.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:.92;filter:saturate(1.08) contrast(1.04);transform:scale(1.015)}
+.timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#05070ce0 0%,#05070c66 28%,#05070c45 72%,#05070cd9 100%),linear-gradient(0deg,#05070ce8 0%,#05070c40 34%,#05070c35 68%,#05070cb8 100%);pointer-events:none}
+.timer-panel{position:relative;z-index:1;width:min(100%,900px);min-height:min(76vh,720px);display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #ffffff35;border-radius:3px;background:linear-gradient(145deg,#090d17a8,#090d1740 55%,#090d17a8);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);padding:clamp(26px,5vw,64px);text-align:center;box-shadow:0 28px 100px #0008,inset 0 0 0 5px #ffffff0a;overflow:hidden;isolation:isolate}
+.timer-panel:before{content:"";position:absolute;inset:12px;z-index:0;border:1px solid var(--timer-accent-soft);pointer-events:none}
 .timer-panel>*{position:relative;z-index:1}
-.timer-panel h2{line-height:1.12}
-.timer-controls button{transition:transform .18s ease,filter .18s ease,border-color .18s ease}
+.timer-kicker{color:#f0f2fa;font-size:clamp(10px,1.1vw,13px);font-weight:850;letter-spacing:.28em;text-transform:uppercase;text-shadow:0 2px 14px #000}
+.timer-panel h2{font-size:clamp(30px,5.3vw,58px);line-height:1.05;margin:18px 0 8px;max-width:100%;overflow-wrap:anywhere;color:#fff;text-shadow:0 4px 28px #000}
+.timer-purpose{color:#e0e5ef;font-size:clamp(12px,1.5vw,16px);letter-spacing:.16em;text-transform:uppercase;margin:8px 0 18px;text-shadow:0 2px 12px #000}
+.timer-display{font-size:clamp(68px,15vw,150px);font-weight:900;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.05;margin:12px 0 18px;text-shadow:0 5px 32px #000,0 0 30px var(--timer-accent-soft)}
+.timer-state{color:#fff;font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 2px 12px #000;margin:0 0 24px}
+.timer-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.timer-controls button{min-width:138px;padding:13px 24px;border-radius:3px;border:1px solid #ffffffa0;background:#101722dd;color:white;font-weight:850;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 7px 24px #0007;transition:transform .18s ease,filter .18s ease,border-color .18s ease}
 .timer-controls button:hover{transform:translateY(-2px);filter:brightness(1.16)}
-/* Ghost of Tsushima — ink-wash samurai treatment */
-#timerOverlay[data-theme="ghost"] .timer-panel{border:1px solid #d6a75b99;box-shadow:0 28px 100px #0009,inset 0 0 0 5px #d6a75b20,inset 0 0 45px #d6a75b22}
-#timerOverlay[data-theme="ghost"] .timer-panel:before{background:linear-gradient(115deg,#090b0dcc 0%,#090b0d55 48%,#090b0dcc 100%),repeating-linear-gradient(0deg,transparent 0 23px,#d6a75b0a 24px 25px)}
-#timerOverlay[data-theme="ghost"] .timer-kicker{color:#e7c98d}
-#timerOverlay[data-theme="ghost"] .timer-display{color:#fff2d5;text-shadow:0 3px 22px #000,0 0 26px #d6a75b88}
-#timerOverlay[data-theme="ghost"] .timer-controls .timer-primary{background:#9b7138e8;border-color:#f0c77c;color:#160f08}
-/* The First Berserker: Khazan — brutal dark-fantasy steel and ember */
-#timerOverlay[data-theme="khazan"] .timer-panel{border:1px solid #ed6848aa;border-radius:2px;box-shadow:0 28px 100px #000b,inset 0 0 0 3px #ed68481c,inset 0 -9px 35px #9d251e33}
-#timerOverlay[data-theme="khazan"] .timer-panel:before{background:linear-gradient(135deg,#16090bdc,#16090b55 48%,#16090bdc),repeating-linear-gradient(135deg,transparent 0 18px,#ed68480b 19px 20px)}
-#timerOverlay[data-theme="khazan"] .timer-kicker{color:#ff9a78}
-#timerOverlay[data-theme="khazan"] .timer-display{color:#ffe2d6;text-shadow:0 3px 20px #000,0 0 28px #ed684899}
-#timerOverlay[data-theme="khazan"] .timer-controls .timer-primary{background:#a8342beF;border-color:#ff9678;color:#fff}
-/* Stellar Blade — luminous sci-fi HUD */
-#timerOverlay[data-theme="stellar"] .timer-panel{border:1px solid #75ddffcc;box-shadow:0 0 0 1px #55c8ef22,0 28px 100px #000b,inset 0 0 42px #55c8ef22}
-#timerOverlay[data-theme="stellar"] .timer-panel:before{background:linear-gradient(135deg,#041321d9,#04132155 55%,#041321d9),linear-gradient(90deg,transparent 49.8%,#55c8ef18 50%,transparent 50.2%)}
-#timerOverlay[data-theme="stellar"] .timer-kicker{color:#8deaff}
-#timerOverlay[data-theme="stellar"] .timer-display{color:#e4faff;text-shadow:0 0 12px #55c8efaa,0 0 35px #55c8ef88}
-#timerOverlay[data-theme="stellar"] .timer-controls .timer-primary{background:#08799be8;border-color:#8deaff;color:#fff}
-/* Death Stranding 2 — restrained expedition interface */
-#timerOverlay[data-theme="death-stranding"] .timer-panel{border:1px solid #d5a15b99;box-shadow:0 28px 100px #0009,inset 0 1px #ffffff20,inset 0 -1px #d5a15b55}
-#timerOverlay[data-theme="death-stranding"] .timer-panel:before{background:linear-gradient(90deg,#0b151bd9,#0b151b55 50%,#0b151bd9),linear-gradient(0deg,transparent 0 17%,#d5a15b20 17.2% 17.5%,transparent 17.7% 82%,#d5a15b20 82.2% 82.5%,transparent 82.7%)}
-#timerOverlay[data-theme="death-stranding"] .timer-kicker{color:#e5bd82}
-#timerOverlay[data-theme="death-stranding"] .timer-display{font-weight:300;color:#fff4df;text-shadow:0 2px 22px #000,0 0 18px #d5a15b66}
-#timerOverlay[data-theme="death-stranding"] .timer-controls button{border-radius:3px;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
-/* Battlefield 6 — tactical command display */
-#timerOverlay[data-theme="battlefield"] .timer-panel{border:1px solid #c4cc8bbb;border-radius:3px;box-shadow:0 28px 100px #000b,inset 0 0 0 4px #c4cc8b18}
-#timerOverlay[data-theme="battlefield"] .timer-panel:before{background:linear-gradient(120deg,#11170edb,#11170e62 50%,#11170edb),repeating-linear-gradient(90deg,transparent 0 39px,#c4cc8b0c 40px 41px)}
-#timerOverlay[data-theme="battlefield"] .timer-kicker{color:#d8e0a2}
-#timerOverlay[data-theme="battlefield"] .timer-display{font-family:Impact,"Arial Narrow",sans-serif;color:#f4f6dc;letter-spacing:.08em;text-shadow:0 3px 20px #000,0 0 20px #b7c07866}
-#timerOverlay[data-theme="battlefield"] .timer-controls button{border-radius:3px;text-transform:uppercase;letter-spacing:.06em}
-#timerOverlay[data-theme="battlefield"] .timer-controls .timer-primary{background:#59643beF;border-color:#d4df91;color:#fff}
-/* Assassin's Creed Revelations — ornate crimson and aged-gold treatment */
-#timerOverlay[data-theme="assassins-creed"] .timer-panel{border:1px solid #d5a15bbb;border-radius:3px 22px 3px 22px;box-shadow:0 28px 100px #000b,inset 0 0 0 4px #d5a15b1f,inset 0 0 42px #c65b5022}
-#timerOverlay[data-theme="assassins-creed"] .timer-panel:before{background:linear-gradient(135deg,#190d12df,#190d1255 52%,#190d12df),repeating-linear-gradient(45deg,transparent 0 25px,#d5a15b0a 26px 27px)}
-#timerOverlay[data-theme="assassins-creed"] .timer-kicker{color:#e9c58e}
-#timerOverlay[data-theme="assassins-creed"] .timer-display{color:#fff0e5;text-shadow:0 3px 22px #000,0 0 24px #c65b5077}
-#timerOverlay[data-theme="assassins-creed"] .timer-controls .timer-primary{background:#843c3ceF;border-color:#e2aa77;color:#fff}
-
-.timer-state{min-height:20px;color:#f0f2f8;font-size:13px;margin-bottom:20px}
-.timer-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.timer-controls button{min-width:116px;padding:12px 18px;border-radius:12px;border:1px solid #ffffff70;background:rgba(20,29,44,.78);color:white;font-weight:850;cursor:pointer;box-shadow:0 6px 18px #0005}
-.timer-controls .timer-primary{background:color-mix(in srgb,var(--timer-accent) 78%,#111827);border-color:var(--timer-accent)}
-.timer-controls .timer-stop{background:rgba(104,42,52,.82);border-color:#e18a94}
-#timerOverlay[data-theme="ghost"]{--timer-accent:#d6a75b;--timer-accent-soft:#d6a75b66}
-#timerOverlay[data-theme="khazan"]{--timer-accent:#ed6848;--timer-accent-soft:#ed684866}
-#timerOverlay[data-theme="stellar"]{--timer-accent:#55c8ef;--timer-accent-soft:#55c8ef66}
-#timerOverlay[data-theme="death-stranding"]{--timer-accent:#d5a15b;--timer-accent-soft:#d5a15b66}
-#timerOverlay[data-theme="battlefield"]{--timer-accent:#b7c078;--timer-accent-soft:#b7c07866}
-#timerOverlay[data-theme="assassins-creed"]{--timer-accent:#c65b50;--timer-accent-soft:#c65b5066}
-.timer-alert{display:none;margin:16px 0 0;padding:13px;border:1px solid #62d99a;border-radius:12px;background:#123d2def;color:#b6ffd5;font-weight:850}
+.timer-controls .timer-primary{background:color-mix(in srgb,var(--timer-accent) 82%,#111827);border-color:var(--timer-accent);color:#101014}
+.timer-controls .timer-stop{background:#321e25dd;border-color:#d78a91}
+.timer-alert{display:none;margin:24px auto 0;max-width:520px;color:#fff;font-size:clamp(16px,2vw,22px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 2px 15px #000}
 .timer-alert.show{display:block}
-@media(max-width:560px){.timer-overlay{padding:10px}.timer-panel{width:100%;padding:25px 16px;border-radius:20px}.timer-display{margin:20px 0}.timer-controls button{flex:1;min-width:100px}.game-actions{max-width:100%}}
+#timerDoneControls button{background:var(--timer-accent);border-color:var(--timer-accent);color:#101014;min-width:190px}
+/* Game-specific palettes and type treatments */
+#timerOverlay[data-theme="ghost"]{--timer-accent:#d6b16c;--timer-accent-soft:#d6b16c66}
+#timerOverlay[data-theme="ghost"] .timer-panel{border-color:#d6b16c99;box-shadow:0 28px 100px #0009,inset 0 0 0 5px #d6b16c1c}
+#timerOverlay[data-theme="ghost"] .timer-panel h2,#timerOverlay[data-theme="ghost"] .timer-display{font-family:"Cinzel",Georgia,serif;font-weight:700;letter-spacing:.055em}
+#timerOverlay[data-theme="ghost"] .timer-kicker,#timerOverlay[data-theme="ghost"] .timer-purpose{font-family:"Cinzel",Georgia,serif;color:#f1d9a5}
+#timerOverlay[data-theme="ghost"] .timer-controls button{font-family:"Cinzel",Georgia,serif}
+#timerOverlay[data-theme="khazan"]{--timer-accent:#f06a4b;--timer-accent-soft:#f06a4b77}
+#timerOverlay[data-theme="khazan"] .timer-panel{border:2px solid #ed6848aa;background:linear-gradient(145deg,#19090de0,#19090d80 55%,#19090de0);box-shadow:0 28px 100px #000b,inset 0 0 0 4px #ed68481c}
+#timerOverlay[data-theme="khazan"] .timer-panel h2,#timerOverlay[data-theme="khazan"] .timer-display{font-family:"Teko","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+#timerOverlay[data-theme="khazan"] .timer-kicker,#timerOverlay[data-theme="khazan"] .timer-purpose,#timerOverlay[data-theme="khazan"] .timer-controls button{font-family:"Teko",Impact,sans-serif;letter-spacing:.16em}
+#timerOverlay[data-theme="stellar"]{--timer-accent:#75ddff;--timer-accent-soft:#55c8ef77}
+#timerOverlay[data-theme="stellar"] .timer-panel{border-color:#75ddffcc;background:linear-gradient(145deg,#041321c9,#04132166 55%,#041321c9);box-shadow:0 0 0 1px #55c8ef22,0 28px 100px #000b}
+#timerOverlay[data-theme="stellar"] .timer-panel h2,#timerOverlay[data-theme="stellar"] .timer-display{font-family:"Orbitron","Trebuchet MS",sans-serif;letter-spacing:.055em}
+#timerOverlay[data-theme="stellar"] .timer-kicker,#timerOverlay[data-theme="stellar"] .timer-purpose,#timerOverlay[data-theme="stellar"] .timer-controls button{font-family:"Rajdhani",sans-serif;letter-spacing:.2em}
+#timerOverlay[data-theme="death-stranding"]{--timer-accent:#d5a15b;--timer-accent-soft:#d5a15b66}
+#timerOverlay[data-theme="death-stranding"] .timer-panel{border-color:#d5a15b99;background:linear-gradient(90deg,#0b151bd9,#0b151b66 50%,#0b151bd9);box-shadow:0 28px 100px #0009,inset 0 1px #ffffff20}
+#timerOverlay[data-theme="death-stranding"] .timer-panel h2,#timerOverlay[data-theme="death-stranding"] .timer-display{font-family:"Rajdhani",Arial,sans-serif;font-weight:500;letter-spacing:.14em}
+#timerOverlay[data-theme="death-stranding"] .timer-kicker,#timerOverlay[data-theme="death-stranding"] .timer-purpose,#timerOverlay[data-theme="death-stranding"] .timer-controls button{font-family:"Rajdhani",Arial,sans-serif;letter-spacing:.22em}
+#timerOverlay[data-theme="battlefield"]{--timer-accent:#c4cc8b;--timer-accent-soft:#c4cc8b66}
+#timerOverlay[data-theme="battlefield"] .timer-panel{border-color:#c4cc8bbb;background:linear-gradient(120deg,#11170edb,#11170e72 50%,#11170edb);box-shadow:0 28px 100px #000b,inset 0 0 0 4px #c4cc8b18}
+#timerOverlay[data-theme="battlefield"] .timer-panel h2,#timerOverlay[data-theme="battlefield"] .timer-display{font-family:"Oswald","Arial Narrow",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+#timerOverlay[data-theme="battlefield"] .timer-kicker,#timerOverlay[data-theme="battlefield"] .timer-purpose,#timerOverlay[data-theme="battlefield"] .timer-controls button{font-family:"Oswald",Impact,sans-serif;letter-spacing:.17em}
+#timerOverlay[data-theme="assassins-creed"]{--timer-accent:#d5a15b;--timer-accent-soft:#d5a15b66}
+#timerOverlay[data-theme="assassins-creed"] .timer-panel{border-color:#d5a15bbb;background:linear-gradient(135deg,#190d12df,#190d1266 52%,#190d12df);box-shadow:0 28px 100px #000b,inset 0 0 0 4px #d5a15b1f}
+#timerOverlay[data-theme="assassins-creed"] .timer-panel h2,#timerOverlay[data-theme="assassins-creed"] .timer-display{font-family:"Cinzel Decorative","Cinzel",Georgia,serif;letter-spacing:.045em}
+#timerOverlay[data-theme="assassins-creed"] .timer-kicker,#timerOverlay[data-theme="assassins-creed"] .timer-purpose,#timerOverlay[data-theme="assassins-creed"] .timer-controls button{font-family:"Cinzel",Georgia,serif;letter-spacing:.14em}
+@media(max-width:560px){
+ .timer-overlay{padding:10px;align-items:stretch}
+ .timer-artwork{object-position:center center}
+ .timer-panel{width:100%;min-height:100%;padding:34px 17px;border-radius:2px}
+ .timer-panel:before{inset:7px}
+ .timer-panel h2{font-size:clamp(26px,8vw,40px)}
+ .timer-display{font-size:clamp(52px,17vw,86px);margin:20px 0}
+ .timer-controls{width:100%;gap:8px}
+ .timer-controls button{flex:1;min-width:0;padding:13px 10px;font-size:11px}
+ .timer-purpose{letter-spacing:.1em}
+}
+
 </style>
 </head>
 <body>
@@ -265,7 +242,7 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
  function stopTimerAudio(){if(timerAudioSource){try{timerAudioSource.stop()}catch{};try{timerAudioSource.disconnect()}catch{};timerAudioSource=null;}}
  function timerPaint(){if(!activeTimer)return;const remaining=activeTimer.paused?activeTimer.remaining:Math.max(0,activeTimer.deadline-Date.now());$('timerDisplay').textContent=timerFormat(remaining);if(remaining<=0&&!activeTimer.finished){activeTimer.finished=true;clearInterval(timerInterval);timerInterval=null;$('timerState').textContent='Session complete';$('timerPause').hidden=true;$('timerStop').hidden=true;$('timerAlert').textContent=activeTimer.kind==='start'?"It's time to play! Your scheduled start time has arrived.":"Time's up! Your planned game session has ended.";$('timerAlert').classList.add('show');$('timerDoneControls').style.display='flex';playTimerAudio();document.title='Time is up · GameDay Planner';}else if(!activeTimer.finished){$('timerState').textContent=activeTimer.paused?'Paused':activeTimer.kind==='start'?'Waiting for scheduled start':'Timer running';}}
  function timerClose(){clearInterval(timerInterval);timerInterval=null;stopTimerAudio();activeTimer=null;timerOverlay.classList.remove('open');document.title='GameDay Planner';}
- function setTimerArtwork(g){const n=String(g.name||'').toLowerCase();const art=[[/ghost of tsushima/,2215430,'ghost'],[/first berserker|khazan/,2680010,'khazan'],[/stellar blade/,3489700,'stellar'],[/death stranding 2/,2456740,'death-stranding'],[/battlefield 6/,2807960,'battlefield'],[/assassin.?s creed revelations/,201870,'assassins-creed']];const match=art.find(item=>item[0].test(n));const img=$('timerArtwork');timerOverlay.dataset.theme=match?match[2]:'default';if(match){img.hidden=false;img.onerror=()=>{if(!img.dataset.fallback){img.dataset.fallback='1';img.src='https://cdn.akamai.steamstatic.com/steam/apps/'+match[1]+'/header.jpg';}else{img.hidden=true;}};img.onload=()=>{img.dataset.fallback='';};img.src='https://cdn.akamai.steamstatic.com/steam/apps/'+match[1]+'/library_hero.jpg';}else{img.removeAttribute('src');img.hidden=true;img.dataset.fallback='';}}
+ function setTimerArtwork(g){const n=String(g.name||'').toLowerCase();const art=[[/ghost of tsushima/,2215430,'ghost'],[/first berserker|khazan/,2680010,'khazan'],[/stellar blade/,3489700,'stellar'],[/death stranding 2/,2456740,'death-stranding'],[/battlefield 6/,2807960,'battlefield'],[/assassin.?s creed revelations/,201870,'assassins-creed']];const match=art.find(item=>item[0].test(n));const img=$('timerArtwork');timerOverlay.dataset.theme=match?match[2]:'default';img.onerror=null;img.onload=null;img.hidden=!match;img.dataset.fallback='0';if(match){const base='https://cdn.akamai.steamstatic.com/steam/apps/'+match[1]+'/';img.onerror=()=>{if(img.dataset.fallback==='0'){img.dataset.fallback='1';img.src=base+'library_600x900.jpg';}else if(img.dataset.fallback==='1'){img.dataset.fallback='2';img.src=base+'library_hero.jpg';}else{img.hidden=true;}};img.src=base+'header.jpg';}else{img.removeAttribute('src');}}
  function startGameTimer(g){setTimerArtwork(g);let ms=0,kind='duration',purpose='Time remaining';if(g.timeMode==='duration'||(!g.timeMode&&g.durationValue)){const amount=Number(g.durationValue),unit=g.durationUnit||'hours';if(!Number.isFinite(amount)||amount<=0){alert('Set a play duration for this game before starting its timer.');return;}ms=amount*(unit==='minutes'?60000:3600000);}else{if(!g.date||!g.time){alert('Set a play date and specific start time for this game before starting its timer.');return;}const target=new Date(g.date+'T'+g.time).getTime();ms=target-Date.now();if(!Number.isFinite(ms)||ms<=0){alert('This game\'s scheduled start time has already passed. Update its date or time before starting the countdown.');return;}kind='start';purpose='Time until scheduled start';}
  activeTimer={gameId:g.id,deadline:Date.now()+ms,remaining:ms,paused:false,finished:false,kind};$('timerTitle').textContent=g.name;$('timerPurpose').textContent=purpose;$('timerAlert').classList.remove('show');$('timerPause').hidden=false;$('timerStop').hidden=false;$('timerPause').textContent='Pause';$('timerDoneControls').style.display='none';timerOverlay.classList.add('open');prepareTimerAudio()?.catch(err=>console.error('Could not prepare timer audio:',err));timerPaint();timerInterval=setInterval(timerPaint,250);}
  $('timerPause').addEventListener('click',()=>{if(!activeTimer||activeTimer.finished)return;if(activeTimer.paused){activeTimer.deadline=Date.now()+activeTimer.remaining;activeTimer.paused=false;$('timerPause').textContent='Pause';}else{activeTimer.remaining=Math.max(0,activeTimer.deadline-Date.now());activeTimer.paused=true;$('timerPause').textContent='Resume';}timerPaint()});
