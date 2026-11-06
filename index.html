@@ -93,7 +93,7 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .timer-overlay{position:fixed;inset:0;z-index:1000;background:#070a12;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto}
 .timer-overlay.open{display:flex}
 .timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.94;filter:saturate(1.1)}
-.timer-overlay:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b14df,#080b1488 50%,#080b14d9),linear-gradient(0deg,#080b14f2,transparent 55%);pointer-events:none}
+ .timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b14df,#080b1488 50%,#080b14d9),linear-gradient(0deg,#080b14f2,transparent 55%);pointer-events:none}
 .timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff55;border-radius:26px;background:#101827d9;backdrop-filter:blur(16px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #000a}
 .timer-kicker{color:#d5dced;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
 .timer-panel h2{font-size:clamp(25px,4vw,38px);margin:12px 0 5px;overflow-wrap:anywhere;text-shadow:0 3px 22px #000}
@@ -221,5 +221,5 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
  document.addEventListener('gameday:cloud-loaded',()=>{games=load();render()});
 })();
 </script>
-<script type="module" src="./auth.js?v=22"></script>
+<script type="module" src="./auth.js?v=23"></script>
 </body></html>
