@@ -17,7 +17,8 @@ function addUI(){
  main.insertBefore(login,header);
  dash.append(header,stats,editor,toolbar,list,footer);main.append(dash);
  const top=header.querySelector('.top-actions');
- top.innerHTML='<button class="iconbtn" id="addGameBtn" title="Add new game" aria-label="Add new game" style="font-size:25px">＋</button><button class="btn" id="installBtn" hidden>＋ Install</button><button class="iconbtn" id="exportBtn" title="Export your list">⇩</button><div style="position:relative"><button class="btn" id="menuBtn" aria-haspopup="true" aria-expanded="false">Menu ▾</button><div id="menuDropdown" class="panel" hidden style="position:absolute;right:0;top:48px;z-index:10;min-width:150px;padding:6px;margin:0"><button class="btn" data-page="games" style="width:100%;text-align:left;margin:3px 0">🎮 Games</button><button class="btn" data-page="profile" style="width:100%;text-align:left;margin:3px 0">👤 Profile</button><button class="btn" id="logoutBtn" style="width:100%;text-align:left;margin:3px 0">Sign out</button></div></div>';
+ top.innerHTML='<button class="btn" id="installBtn" hidden>＋ Install</button><button class="iconbtn" id="exportBtn" title="Export your list">⇩</button><div style="position:relative"><button class="btn" id="menuBtn" aria-haspopup="true" aria-expanded="false">Menu ▾</button><div id="menuDropdown" class="panel" hidden style="position:absolute;right:0;top:48px;z-index:10;min-width:150px;padding:6px;margin:0"><button class="btn" data-page="games" style="width:100%;text-align:left;margin:3px 0">🎮 Games</button><button class="btn" data-page="profile" style="width:100%;text-align:left;margin:3px 0">👤 Profile</button><button class="btn" id="logoutBtn" style="width:100%;text-align:left;margin:3px 0">Sign out</button></div></div>';
+ header.insertAdjacentHTML('afterbegin','<button class="iconbtn" id="addGameBtn" title="Add new game" aria-label="Add new game" style="font-size:25px;margin-right:10px">＋</button>');
  header.querySelector('.brand').insertAdjacentHTML('afterbegin','<img id="navAvatar" alt="Profile" hidden style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)">');
  header.querySelector('.brand .logo').id='brandLogo';
  header.querySelector('.brand .logo').hidden=false;
@@ -30,7 +31,7 @@ function addUI(){
  $('menuBtn').onclick=()=>{const m=$('menuDropdown');m.hidden=!m.hidden;$('menuBtn').setAttribute('aria-expanded',String(!m.hidden))};
  $('menuDropdown').addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(b){showPage(b.dataset.page);$('menuDropdown').hidden=true;$('menuBtn').setAttribute('aria-expanded','false')}});
  $('logoutBtn').onclick=signOut;
- $('addGameBtn').onclick=()=>{showPage('games');editor.hidden=!editor.hidden;if(!editor.hidden){$('formTitle').textContent='＋ Add a game';$('gameForm').reset();$('gameName').focus();editor.scrollIntoView({behavior:'smooth',block:'start'})}};
+ $('addGameBtn').onclick=()=>{const opening=editor.hidden;editor.dataset.open=opening?'yes':'no';showPage('games');if(opening){$('formTitle').textContent='＋ Add a game';$('gameForm').reset();$('gameName').focus();editor.scrollIntoView({behavior:'smooth',block:'start'})}};
  $('profileForm').onsubmit=saveProfile;
  $('avatarFile').onchange=previewAvatar;
  $('backgroundTheme').onchange=()=>applyTheme($('backgroundTheme').value,$('iconTheme').value,$('accentColor').value);
