@@ -92,27 +92,28 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .start-game-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
 
 
-/* Game-specific timer overlay — compact cinematic composition */
-.timer-overlay{--timer-accent:#b6a06b;--timer-accent-soft:#b6a06b66;position:fixed;inset:0;z-index:1000;background:#05070c;display:none;align-items:center;justify-content:center;padding:clamp(14px,3vw,36px);overflow:hidden}
+/* Cinematic game-art timer overlay */
+.timer-overlay{--timer-accent:#b6a06b;--timer-accent-soft:#b6a06b66;position:fixed;inset:0;z-index:1000;background:#030509;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,34px);overflow:hidden}
 .timer-overlay.open{display:flex}
-.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:1;filter:saturate(1.12) contrast(1.06);transform:scale(1.02)}
-.timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:linear-gradient(90deg,#05070caa,#05070c22 50%,#05070caa),linear-gradient(0deg,#05070cd9 0%,#05070c30 42%,#05070c66 100%);pointer-events:none}
-.timer-panel{position:relative;z-index:1;width:min(100%,570px);min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #ffffff70;border-radius:18px;background:rgba(7,11,19,.68);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:clamp(25px,4vw,42px);text-align:center;box-shadow:0 24px 90px #0009,inset 0 0 36px var(--timer-accent-soft);overflow:hidden;isolation:isolate}
-.timer-panel:before{content:"";position:absolute;inset:9px;z-index:0;border:1px solid var(--timer-accent-soft);border-radius:12px;pointer-events:none}
+.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:1;filter:saturate(1.16) contrast(1.08);transform:scale(1.025)}
+.timer-overlay:after{z-index:0;content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 12%,#02040a66 78%,#02040acc 100%),linear-gradient(90deg,#02040a99,#02040a12 48%,#02040a99),linear-gradient(0deg,#02040ad9 0%,#02040a18 48%,#02040a88 100%);pointer-events:none}
+.timer-panel{position:relative;z-index:1;width:min(100%,620px);min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid color-mix(in srgb,var(--timer-accent) 78%,#ffffff);border-radius:5px;background:rgba(4,8,14,.78);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:clamp(28px,4.5vw,48px);text-align:center;box-shadow:0 28px 100px #000c,inset 0 0 42px var(--timer-accent-soft);overflow:hidden;isolation:isolate}
+.timer-panel:before{content:"";position:absolute;inset:9px;z-index:0;border:1px solid var(--timer-accent-soft);border-radius:2px;pointer-events:none}
+.timer-panel:after{content:"";position:absolute;z-index:0;top:0;left:8%;right:8%;height:3px;background:var(--timer-accent);box-shadow:0 0 22px var(--timer-accent);pointer-events:none}
 .timer-panel>*{position:relative;z-index:1}
-.timer-kicker{color:#f0f2fa;font-size:clamp(10px,1vw,12px);font-weight:850;letter-spacing:.26em;text-transform:uppercase;text-shadow:0 2px 14px #000}
-.timer-panel h2{font-size:clamp(25px,4vw,39px);line-height:1.08;margin:12px 0 5px;max-width:100%;overflow-wrap:anywhere;color:#fff;text-shadow:0 4px 28px #000}
-.timer-purpose{color:#e0e5ef;font-size:clamp(11px,1.3vw,14px);letter-spacing:.15em;text-transform:uppercase;margin:6px 0 14px;text-shadow:0 2px 12px #000}
-.timer-display{font-size:clamp(58px,10vw,100px);font-weight:900;letter-spacing:.025em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.05;margin:10px 0 12px;text-shadow:0 5px 32px #000,0 0 30px var(--timer-accent-soft)}
-.timer-state{color:#fff;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 2px 12px #000;margin:0 0 20px}
-.timer-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.timer-controls button{min-width:125px;padding:12px 20px;border-radius:9px;border:1px solid #ffffffa0;background:#101722e8;color:white;font-weight:850;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:0 7px 24px #0007;transition:transform .18s ease,filter .18s ease,border-color .18s ease}
+.timer-kicker{color:var(--timer-accent);font-size:clamp(10px,1vw,12px);font-weight:900;letter-spacing:.3em;text-transform:uppercase;text-shadow:0 2px 14px #000}
+.timer-panel h2{font-size:clamp(27px,4.4vw,43px);line-height:1.08;margin:13px 0 5px;max-width:100%;overflow-wrap:anywhere;color:#fff;text-shadow:0 4px 28px #000}
+.timer-purpose{color:#e0e5ef;font-size:clamp(11px,1.3vw,14px);font-weight:700;letter-spacing:.17em;text-transform:uppercase;margin:7px 0 15px;text-shadow:0 2px 12px #000}
+.timer-display{font-size:clamp(64px,11vw,112px);font-weight:900;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1;margin:14px 0 16px;text-shadow:0 5px 32px #000,0 0 34px var(--timer-accent-soft)}
+.timer-state{color:#fff;font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 2px 12px #000;margin:0 0 22px}
+.timer-controls{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.timer-controls button{min-width:136px;padding:13px 22px;border-radius:3px;border:1px solid #ffffffa0;background:#101722ed;color:white;font-weight:900;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 7px 24px #0008;transition:transform .18s ease,filter .18s ease,border-color .18s ease}
 .timer-controls button:hover{transform:translateY(-2px);filter:brightness(1.16)}
 .timer-controls .timer-primary{background:color-mix(in srgb,var(--timer-accent) 82%,#111827);border-color:var(--timer-accent);color:#101014}
 .timer-controls .timer-stop{background:#321e25ed;border-color:#d78a91}
 .timer-alert{display:none;margin:20px auto 0;max-width:460px;color:#fff;font-size:clamp(15px,1.8vw,20px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 2px 15px #000}
 .timer-alert.show{display:block}
-#timerDoneControls button{background:var(--timer-accent);border-color:var(--timer-accent);color:#101014;min-width:175px}
+#timerDoneControls button{background:var(--timer-accent);border-color:var(--timer-accent);color:#101014;min-width:185px}
 /* Six distinct game identities */
 #timerOverlay[data-theme="ghost"]{--timer-accent:#d6b16c;--timer-accent-soft:#d6b16c66}
 #timerOverlay[data-theme="ghost"] .timer-panel{border:1px solid #d6b16caa;border-radius:4px 22px 4px 22px;background:rgba(13,13,17,.67);box-shadow:0 28px 100px #0009,inset 0 0 0 4px #d6b16c20}
@@ -147,10 +148,10 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 @media(max-width:560px){
  .timer-overlay{padding:10px}
  .timer-artwork{object-position:center center}
- .timer-panel{width:100%;padding:28px 18px;border-radius:12px}
+ .timer-panel{width:100%;padding:30px 18px;border-radius:4px}
  .timer-panel:before{inset:6px}
  .timer-panel h2{font-size:clamp(24px,7.5vw,36px)}
- .timer-display{font-size:clamp(48px,15vw,76px);margin:16px 0}
+ .timer-display{font-size:clamp(50px,15vw,82px);margin:17px 0}
  .timer-controls{width:100%;gap:8px}
  .timer-controls button{flex:1;min-width:0;padding:12px 9px;font-size:10px}
  .timer-purpose{letter-spacing:.1em}
