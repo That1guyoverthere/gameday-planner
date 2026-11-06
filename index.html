@@ -90,21 +90,23 @@ body.editing-game #dashboardContent>.stats,body.editing-game #dashboardContent>.
 .game-actions{align-content:start}
 .start-game-btn{width:100%;min-height:34px;border:1px solid #3d8c69;border-radius:10px;background:linear-gradient(110deg,#1d6a49,#174d3a);color:#eafff3;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .start-game-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.timer-overlay{position:fixed;inset:0;z-index:1000;background:#080b14df;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px}
+.timer-overlay{position:fixed;inset:0;z-index:1000;background:#070a12;display:none;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto}
 .timer-overlay.open{display:flex}
-.timer-panel{width:min(100%,480px);border:1px solid #46516b;border-radius:22px;background:linear-gradient(145deg,#1d2436,#111722);padding:28px;text-align:center;box-shadow:0 24px 80px #0009}
-.timer-kicker{color:#aeb9d2;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-.timer-panel h2{font-size:23px;margin:9px 0 5px;overflow-wrap:anywhere}
-.timer-purpose{color:var(--muted);font-size:13px;margin:0 0 20px}
-.timer-display{font-size:clamp(48px,12vw,70px);font-weight:900;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#e9edff;line-height:1.15;margin:18px 0 22px;text-shadow:0 0 28px #8e80ff55}
-.timer-state{min-height:20px;color:#9da9c4;font-size:12px;margin-bottom:18px}
+.timer-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.94;filter:saturate(1.1)}
+.timer-overlay:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080b14df,#080b1488 50%,#080b14d9),linear-gradient(0deg,#080b14f2,transparent 55%);pointer-events:none}
+.timer-panel{position:relative;z-index:1;width:min(100%,620px);border:1px solid #ffffff55;border-radius:26px;background:#101827d9;backdrop-filter:blur(16px);padding:clamp(24px,5vw,46px);text-align:center;box-shadow:0 28px 100px #000a}
+.timer-kicker{color:#d5dced;font-size:11px;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
+.timer-panel h2{font-size:clamp(25px,4vw,38px);margin:12px 0 5px;overflow-wrap:anywhere;text-shadow:0 3px 22px #000}
+.timer-purpose{color:#d4dbea;font-size:14px;margin:0 0 24px}
+.timer-display{font-size:clamp(54px,13vw,94px);font-weight:950;letter-spacing:.035em;font-variant-numeric:tabular-nums;color:#fff;line-height:1.12;margin:22px 0 26px;text-shadow:0 5px 32px #000,0 0 28px #9b8cff66}
+.timer-state{min-height:20px;color:#e0e6f3;font-size:13px;margin-bottom:20px}
 .timer-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.timer-controls button{min-width:108px;padding:11px 16px;border-radius:11px;border:1px solid var(--line);background:#20283a;color:white;font-weight:800;cursor:pointer}
-.timer-controls .timer-primary{background:#5140a0;border-color:#7661ce}
-.timer-controls .timer-stop{background:#482b35;border-color:#8b4658}
-.timer-alert{display:none;margin:14px 0 0;padding:12px;border:1px solid #348d61;border-radius:12px;background:#163c2c;color:#a9f4ca;font-weight:800}
+.timer-controls button{min-width:116px;padding:12px 18px;border-radius:12px;border:1px solid #ffffff50;background:#1c2638ef;color:white;font-weight:850;cursor:pointer;box-shadow:0 6px 18px #0005}
+.timer-controls .timer-primary{background:#6852c9;border-color:#a394ff}
+.timer-controls .timer-stop{background:#742f42;border-color:#d26b83}
+.timer-alert{display:none;margin:16px 0 0;padding:13px;border:1px solid #62d99a;border-radius:12px;background:#123d2def;color:#b6ffd5;font-weight:850}
 .timer-alert.show{display:block}
-@media(max-width:560px){.timer-panel{padding:22px 16px}.game-actions{max-width:100%}}
+@media(max-width:560px){.timer-overlay{padding:10px}.timer-panel{width:100%;padding:25px 16px;border-radius:20px}.timer-display{margin:20px 0}.timer-controls button{flex:1;min-width:100px}.game-actions{max-width:100%}}
 </style>
 </head>
 <body>
