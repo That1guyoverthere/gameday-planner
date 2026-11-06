@@ -6,6 +6,9 @@ create table if not exists public.profiles (
   display_name text not null default '',
   background_theme text not null default 'midnight',
   icon_theme text not null default 'controller',
+  avatar_url text,
+  bio text not null default '',
+  accent_color text not null default '#9b8cff',
   updated_at timestamptz not null default now()
 );
 
@@ -76,3 +79,29 @@ create trigger on_auth_user_created_gameday
   after insert on auth.users
   for each row execute procedure public.create_gameday_profile();
 
+
+-- Expand existing profiles safely if this script was run before.
+alter table public.profiles add column if not exists avatar_url text;
+alter table public.profiles add column if not exists bio text not null default '';
+alter table public.profiles add column if not exists accent_color text not null default '#9b8cff';
+
+-- Publicly readable avatar images; uploads/changes/deletes are restricted to the signed-in owner folder.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('avatars', 'avatars', true, 5242880, array['image/png','image/jpeg','image/webp','image/gif'])
+on conflict (id) do update set public = true, file_size_limit = 5242880, allowed_mime_types = array['image/png','image/jpeg','image/webp','image/gif'];
+
+drop policy if exists "Users can upload own GameDay avatar" on storage.objects;
+create policy "Users can upload own GameDay avatar"
+on storage.objects for insert to authenticated
+with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "Users can update own GameDay avatar" on storage.objects;
+create policy "Users can update own GameDay avatar"
+on storage.objects for update to authenticated
+using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text)
+with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+
+drop policy if exists "Users can delete own GameDay avatar" on storage.objects;
+create policy "Users can delete own GameDay avatar"
+on storage.objects for delete to authenticated
+using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
