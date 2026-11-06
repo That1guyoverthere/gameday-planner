@@ -60,7 +60,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{width:min
  let games=load(),filter='all',editing=null,deferredPrompt=null;
  const $=id=>document.getElementById(id);
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}}
- function save(){localStorage.setItem(KEY,JSON.stringify(games));render()}
+ function save(){localStorage.setItem(KEY,JSON.stringify(games));render();document.dispatchEvent(new Event('gameday:changed'))}
  function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
  function fmtDate(d,t,type='one-day'){if(!d)return 'No date set';const x=new Date(d+'T12:00:00');return x.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})+(t?' · '+t:'')+(type==='until-completion'?' · Until completion':'')}
  function formatTimePlan(g){if(g.timeMode==='duration'&&g.durationValue)return g.durationValue+' '+(Number(g.durationValue)===1&&g.durationUnit==='hours'?'hour':Number(g.durationValue)===1&&g.durationUnit==='minutes'?'minute':g.durationUnit);return g.time||''}
@@ -90,6 +90,8 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{width:min
  $('installBtn').onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('installBtn').hidden=true};
  if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
  render();
+ document.addEventListener('gameday:cloud-loaded',()=>{games=load();render()});
 })();
 </script>
+<script type="module" src="./auth.js"></script>
 </body></html>
